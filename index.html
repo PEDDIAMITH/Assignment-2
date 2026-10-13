@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Quest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 16px;
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+button {
+    padding: 10px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0f172a;
+    background-color: #fbbf24;
+    border: 2px solid #f59e0b;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #fcd34d;
+}
+
+/* ---------- Header ---------- */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    background-color: #1e1b4b;
+    border: 2px solid #818cf8;
+    border-radius: 10px;
+}
+
+.game-header h1 {
+    font-size: 28px;
+    color: #fbbf24;
+}
+
+.game-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.game-info span {
+    padding: 6px 12px;
+    background-color: #312e81;
+    border-radius: 8px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ---------- Game area ---------- */
+.game-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    min-height: 380px;
+    padding: 20px;
+    background-color: #38bdf8;
+    border: 3px solid #0369a1;
+    border-radius: 10px;
+    color: #0f172a;
+    font-weight: bold;
+}
+
+.game-message {
+    padding: 10px 20px;
+    background-color: #fef9c3;
+    border: 2px solid #ca8a04;
+    border-radius: 10px;
+}
+
+.scene-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 120px;
+}
+
+.scene-row-wide {
+    justify-content: space-between;
+    width: 70%;
+}
+
+.player {
+    padding: 20px;
+    background-color: #ef4444;
+    border: 2px solid #991b1b;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.star {
+    padding: 15px;
+    background-color: #fde047;
+    border: 2px solid #ca8a04;
+    border-radius: 50%;
+}
+
+.platform {
+    padding: 12px 40px;
+    background-color: #65a30d;
+    border: 2px solid #365314;
+    border-radius: 6px;
+    color: #fff;
+}
+
+/* ---------- Panels ---------- */
+.game-panels {
+    display: flex;
+    gap: 20px;
+}
+
+.panel {
+    flex: 1;
+    padding: 20px;
+    margin: 10px;
+    background-color: #1e293b;
+    border: 2px solid #475569;
+    border-radius: 10px;
+}
+
+.panel h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #fbbf24;
+    text-align: center;
+}
+
+/* ---------- Controls ---------- */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.jump {
+    background-color: #f87171;
+    border-color: #b91c1c;
+    padding: 12px 40px;
+}
+
+/* ---------- Inventory ---------- */
+.inventory-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.item {
+    padding: 15px;
+    background-color: #334155;
+    border: 2px solid #94a3b8;
+    border-radius: 8px;
+}
+
+/* ---------- Quest ---------- */
+.quest-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #334155;
+    border-left: 4px solid #fbbf24;
+    border-radius: 6px;
+}
+
+/* ---------- Footer ---------- */
+.game-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #1e1b4b;
+    border: 2px solid #818cf8;
+    border-radius: 10px;
+}
+
+/* ---------- Display lab (Part 2) ---------- */
+.display-lab {
+    padding: 20px;
+    background-color: #1e293b;
+    border: 2px dashed #475569;
+    border-radius: 10px;
+}
+
+.display-lab h2 {
+    margin-bottom: 15px;
+    color: #fbbf24;
+}
+
+.display-lab h3 {
+    margin: 15px 0 8px;
+    color: #a5b4fc;
+}
+
+.display-lab ol {
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.demo {
+    padding: 10px;
+    background-color: #0f172a;
+    border-radius: 8px;
+}
+
+.box,
+.item-inline,
+.demo a {
+    padding: 8px 14px;
+    margin: 4px;
+    background-color: #4f46e5;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.demo-block .box {
+    display: block;
+}
+
+.item-inline {
+    display: inline;
+}
+
+.demo-inline-block a {
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.demo-flex {
+    display: flex;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .game-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .game-info {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .game-panels {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .panel {
+        margin: 0;
+        padding: 15px;
+    }
+
+    .scene-row {
+        gap: 40px;
+    }
+
+    .scene-row-wide {
+        width: 100%;
+    }
+
+    .platform {
+        padding: 10px 20px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}</style>
+
+<body>
+    <header class="game-header">
+        <h1>Flexbox Quest</h1>
+
+        <div class="game-info">
+            <span>Lives: 3</span>
+            <span>Coins: 120</span>
+            <span>Level: 1</span>
+            <span>Score: 1250</span>
+        </div>
+
+        <div class="header-actions">
+            <button>Pause</button>
+            <button>Menu</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="game-area">
+            <div class="game-message">Collect all the stars!</div>
+
+            <div class="scene-row">
+                <div class="player">PLAYER</div>
+                <div class="star">STAR</div>
+            </div>
+
+            <div class="scene-row">
+                <div class="platform">PLATFORM</div>
+            </div>
+
+            <div class="scene-row scene-row-wide">
+                <div class="platform">PLATFORM</div>
+                <div class="platform">PLATFORM</div>
+            </div>
+        </section>
+
+        <section class="game-panels">
+            <div class="panel controls">
+                <h2>Controls</h2>
+                <div class="control-row">
+                    <button>&uarr;</button>
+                </div>
+                <div class="control-row">
+                    <button>&larr;</button>
+                    <button>&darr;</button>
+                    <button>&rarr;</button>
+                </div>
+                <div class="control-row">
+                    <button class="jump">JUMP</button>
+                </div>
+            </div>
+
+            <div class="panel inventory">
+                <h2>Inventory</h2>
+                <div class="inventory-items">
+                    <div class="item">Sword</div>
+                    <div class="item">Shield</div>
+                    <div class="item">Potion</div>
+                    <div class="item">Key</div>
+                    <div class="item">Bow</div>
+                    <div class="item">Magic Potion</div>
+                    <div class="item">Map</div>
+                    <div class="item">Coin</div>
+                </div>
+            </div>
+
+            <div class="panel quest">
+                <h2>Quest</h2>
+                <div class="quest-item">
+                    <span>Collect 3 Stars</span>
+                    <span>1 / 3</span>
+                </div>
+                <div class="quest-item">
+                    <span>Find the Golden Key</span>
+                    <span>0 / 1</span>
+                </div>
+                <div class="quest-item">
+                    <span>Defeat the Monster</span>
+                    <span>0 / 1</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 2: display experiment -->
+        <section class="display-lab">
+            <h2>Display Lab</h2>
+
+            <h3>display: block (div)</h3>
+            <div class="demo demo-block">
+                <div class="box">Box 1</div>
+                <div class="box">Box 2</div>
+            </div>
+
+            <h3>display: inline (span)</h3>
+            <div class="demo demo-inline">
+                <span class="item-inline">Item 1</span>
+                <span class="item-inline">Item 2</span>
+            </div>
+
+            <h3>display: inline-block (links)</h3>
+            <div class="demo demo-inline-block">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+            </div>
+
+            <h3>display: flex (div)</h3>
+            <div class="demo demo-flex">
+                <div class="box">Box 1</div>
+                <div class="box">Box 2</div>
+            </div>
+
+            <h3>Answers</h3>
+            <ol>
+                <li>A <code>&lt;div&gt;</code> is <code>block</code>: it takes the full available width, starts on a new line, and respects width, height, margin and padding.</li>
+                <li>A <code>&lt;span&gt;</code> is <code>inline</code>: it only takes the width of its content, stays on the same line, and ignores width/height and vertical margin.</li>
+                <li><code>inline-block</code> sits on the same line like inline, but accepts width, height, margin and padding like block.</li>
+                <li><code>display: flex</code> makes the element a flex container: its direct children become flex items laid out along a main axis (a row by default), side by side.</li>
+            </ol>
+
+            <h3>Padding vs margin</h3>
+            <ol>
+                <li><code>padding</code> changes the space between the content and the border.</li>
+                <li><code>margin</code> changes the space between the element's border and its neighbours.</li>
+                <li>Padding creates space inside the element.</li>
+                <li>Margin creates space outside the element.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer class="game-footer">
+        <p>Flexbox Quest &copy; 2026 &mdash; built with HTML &amp; CSS Flexbox</p>
+    </footer>
+</body>
+</html>
